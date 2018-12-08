@@ -12,12 +12,26 @@ class Deck {
 
     for (let suit in suites){
       for(let value in values){
-        this.deck.push(`${values[value]} of ${suites[suit]}`);
+        this.deck.push(`${values[value]}-of-${suites[suit]}`);
       }
     }
   }
+  shuffle() {
+    const {deck} = this;
+    let m = deck.length, i;
+    
+    while (m) {
+      i = Math.floor(Math.random()* m--);
+      [deck[m],deck[i]] = [deck[i],deck[m]]
+    }
+    return this;
+  }
+  deal(){
+    return this.deck.pop();
+  }
 };
 const default_order = new Deck();
+
 
 
 let discard = [];
@@ -26,11 +40,14 @@ router.get("/", async (req, res) =>{
 
 });
 router.get("/shuffle", async (req, res) =>{
-  res.status(200).json({ordered});
+  const shuffled = default_order.shuffle();
+  res.status(200).json({shuffled});
 });
 router.post("/discard/:card", async (req, res) => {
-  let discard = req.params.card;
-  discard.push(discard);
+  let discard_card = req.params.card;
+  discard.push(discard_card);
+
+  res.json({discard});
 
 
 });
