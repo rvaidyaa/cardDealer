@@ -43,25 +43,72 @@ class Deck {
   deal() {
     return this.deck.shift();
   }
+  discard(discard_card){
+    for (let card in this.deck){
+      console.log(this.deck[card])
+      if (this.deck[card] == discard_card){
+        let cardToDiscard = this.deck.splice(card,1);
+        this.discard.push(cardToDiscard);
+        
+      }
+    }
+  }
+  rebuildDeck(){
+    this.deck = [];
+    let discard = [];
+
+    const suites = ["Spades", "Hearts", "Clubs", "Diamonds"];
+    const values = [
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "Jack",
+      "Queen",
+      "King",
+      "Ace"
+    ];
+
+    for (let suit in suites) {
+      for (let value in values) {
+        this.deck.push(`${values[value]}-of-${suites[suit]}`);
+      }
+    }
+  }
 }
 const deck = new Deck();
 
-let discard = [];
+
+//gets the current deck
 router.get("/", async (req, res) => {
   res.status(200).json({ deck });
 });
+//shuffles cards
 router.get("/shuffle", async (req, res) => {
   deck.shuffle();
   res.status(200).json({ deck });
 });
+//deals top card
 router.get("/deal", async (req, res) => {
   deck.deal()
   res.status(200).json({deck});
 });
-router.post("/discard/:card", async (req, res) => {
+//discards specific card
+router.delete("/discard/:card", async (req, res) => {
   let discard_card = req.params.card;
-  discard.push(discard_card);
-
-  res.json({ discard });
+  console.log(discard_card)
+  deck.discard(discard_card);
+  res.json({ deck });
 });
+//rebuild deck
+router.get("/rebuild", async (req, res) => {
+  deck.rebuildDeck();
+  res.status(200).json({ deck });
+});
+
 module.exports = router;
