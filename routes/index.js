@@ -53,6 +53,9 @@ class Deck {
       }
     }
   }
+  cut(cutValue){
+
+  }
   rebuildDeck(){
     this.deck = [];
     let discard = [];
@@ -103,12 +106,17 @@ router.delete("/discard/:card", async (req, res) => {
   let discard_card = req.params.card;
   console.log(discard_card)
   deck.discard(discard_card);
-  res.json({ deck });
+  res.status(200).json({ deck });
 });
 //rebuild deck
 router.get("/rebuild", async (req, res) => {
   deck.rebuildDeck();
   res.status(200).json({ deck });
+});
+//cut the deck at specified point
+router.get("/cut/:id", async (req, res) => {
+  let cutValue = req.params.id
+  deck.cut(cutValue);
 });
 
 module.exports = router;
