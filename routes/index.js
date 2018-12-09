@@ -48,7 +48,7 @@ class Deck {
       console.log(this.deck[card])
       if (this.deck[card] == discard_card){
         let cardToDiscard = this.deck.splice(card,1);
-        this.discardPile.push(cardToDiscard);
+        this.discardPile.push(cardToDiscard.toString());
         
       }
     }
