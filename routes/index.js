@@ -2,8 +2,10 @@ var express = require("express");
 var router = express.Router();
 var Deck = require('../Deck')
 
+
 //default ordered deck built
 let deck = new Deck();
+deck.makeDeck();
 
 //gets the current deck
 router.get("/",  (req, res) => {
@@ -28,7 +30,6 @@ router.get("/deal",  (req, res) => {
 //discards specific card
 router.delete("/discard/:card",  (req, res) => {
   let discard_card = req.params.card;
-  console.log(discard_card)
   deck.discard(discard_card);
   res.status(200).json({ deck });
 });
@@ -46,7 +47,8 @@ router.post("/cut/:id", async (req, res) => {
 });
 //reorders the deck to the default order without including the discarded cards
 router.get("/order", async (req, res) => {
-  deck.rebuildDeck();
+  console.log('inside order')
+  deck.orderRemaining();
   res.status(200).json({ deck });
 });
 module.exports = router;
