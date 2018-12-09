@@ -4,7 +4,7 @@ var router = express.Router();
 class Deck {
   constructor() {
     this.deck = [];
-    let discard = [];
+    this.discardPile = [];
 
     const suites = ["Spades", "Hearts", "Clubs", "Diamonds"];
     const values = [
@@ -48,7 +48,7 @@ class Deck {
       console.log(this.deck[card])
       if (this.deck[card] == discard_card){
         let cardToDiscard = this.deck.splice(card,1);
-        this.discard.push(cardToDiscard);
+        this.discardPile.push(cardToDiscard);
         
       }
     }
@@ -58,7 +58,7 @@ class Deck {
   }
   rebuildDeck(){
     this.deck = [];
-    let discard = [];
+    this.discardPile = [];
 
     const suites = ["Spades", "Hearts", "Clubs", "Diamonds"];
     const values = [
