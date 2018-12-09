@@ -1,108 +1,32 @@
 var express = require("express");
 var router = express.Router();
+var Deck = require('../Deck')
 
-class Deck {
-  constructor() {
-    this.deck = [];
-    this.discardPile = [];
-
-    const suites = ["Spades", "Hearts", "Clubs", "Diamonds"];
-    const values = [
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "Jack",
-      "Queen",
-      "King",
-      "Ace"
-    ];
-
-    for (let suit in suites) {
-      for (let value in values) {
-        this.deck.push(`${values[value]}-of-${suites[suit]}`);
-      }
-    }
-  }
-  shuffle() {
-    const { deck } = this;
-    let m = deck.length,
-      i;
-
-    while (m) {
-      i = Math.floor(Math.random() * m--);
-      [deck[m], deck[i]] = [deck[i], deck[m]];
-    }
-    return this;
-  }
-  deal() {
-    return this.deck.shift();
-  }
-  discard(discard_card){
-    for (let card in this.deck){
-      console.log(this.deck[card])
-      if (this.deck[card] == discard_card){
-        let cardToDiscard = this.deck.splice(card,1);
-        this.discardPile.push(cardToDiscard.toString());
-        
-      }
-    }
-  }
-  cut(cutValue){
-
-  }
-  rebuildDeck(){
-    this.deck = [];
-    this.discardPile = [];
-
-    const suites = ["Spades", "Hearts", "Clubs", "Diamonds"];
-    const values = [
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "Jack",
-      "Queen",
-      "King",
-      "Ace"
-    ];
-
-    for (let suit in suites) {
-      for (let value in values) {
-        this.deck.push(`${values[value]}-of-${suites[suit]}`);
-      }
-    }
-  }
-}
-const deck = new Deck();
-
+//default ordered deck built
+let deck = new Deck();
 
 //gets the current deck
-router.get("/", async (req, res) => {
+router.get("/",  (req, res) => {
   res.status(200).json({ deck });
 });
 //shuffles cards
-router.get("/shuffle", async (req, res) => {
+router.get("/shuffle",  (req, res) => {
+  deck.rebuildDeck();
+  deck.shuffle();
+  res.status(200).json({ deck });
+});
+//shuffles only remaining cards in deck 
+router.get("/shuffle-remaining",  (req, res) => {
   deck.shuffle();
   res.status(200).json({ deck });
 });
 //deals top card
-router.get("/deal", async (req, res) => {
+router.get("/deal",  (req, res) => {
   deck.deal()
   res.status(200).json({deck});
 });
 //discards specific card
-router.delete("/discard/:card", async (req, res) => {
+router.delete("/discard/:card",  (req, res) => {
   let discard_card = req.params.card;
   console.log(discard_card)
   deck.discard(discard_card);
@@ -114,9 +38,15 @@ router.get("/rebuild", async (req, res) => {
   res.status(200).json({ deck });
 });
 //cut the deck at specified point
-router.get("/cut/:id", async (req, res) => {
-  let cutValue = req.params.id
-  deck.cut(cutValue);
+router.post("/cut/:id", async (req, res) => {
+  console.log(req.params.id);
+  let cutIndex = req.params.id
+  deck.cut(cutIndex);
+  res.status(200).json({deck});
 });
-
+//reorders the deck to the default order without including the discarded cards
+router.get("/order", async (req, res) => {
+  deck.rebuildDeck();
+  res.status(200).json({ deck });
+});
 module.exports = router;
