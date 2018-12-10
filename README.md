@@ -4,8 +4,10 @@ This is a node.js api for dealing cards. Can be used to power many different car
 
 ## Getting Started
 
-npm install (to install dependencies)
-npm start (to start the api on local server)
+```
+npm install
+npm start (starts the dev server on localhost:5000)
+```
 
 
 ### API Documentation
