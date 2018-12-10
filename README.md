@@ -14,7 +14,7 @@ User Stories
 * Cut: Specify a number of cards to cut. Will take the top x number of cards and put it on the bottom. If no deck is made , creates a deck, shuffles and does the former. Needs at least one card to cut. Numbers greater than the number of cards in the deck or numbers less than 0 will cut the deck randomly.
 * Order: Order all the remaining cards back into default order without including discarded cards.
 * Add Jokers: Adds x number of Jokers to the deck , if no Deck is made, makes a deck and adds jokers.
-* Set wild card: Changes card into Joker (future date).
+* Set wild card: Changes card into Joker .
 
 ## API Documentation
 
