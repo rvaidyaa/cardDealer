@@ -20,13 +20,18 @@ router.get("/", (req, res) => {
 //***************************************************************
 //********************SHUFFLES  CARDS****************************
 router.get("/shuffle", (req, res) => {
-  deck.rebuildDeck();
-  deck.shuffle();
   if (deck["deck"].length == 0) {
-    return res.status(500).json({
-      message: "Internal Server error"
+    deck.makeDeck();
+    deck.shuffle();
+    return res.status(200).json({
+      message:
+        "Creating a deck, and shuffling all cards",
+      deck
     });
   }
+  deck.rebuildDeck();
+  deck.shuffle();
+  
   res.status(200).json({ message: "Success Deck shuffled", deck });
 });
 //***************************************************************
@@ -189,6 +194,14 @@ router.post("/addJokers/:number", (req, res) => {
 //*********************************************************************************************
 //********************TURNS SPECIFIED CARD INTO WILD CARD**************************************
 router.put("/set-wildcard/:card", (req, res) => {
+  if (deck["deck"].length == 0) {
+    deck.makeDeck();
+    deck.setWild(req.params.card);
+    return res.status(200).json({
+      message: `Creating a deck, Setting ${req.params.card} to be "Wild card"k`,
+      deck
+    });
+  }
   deck.setWild(req.params.card);
   res.status(200).json({
     message:
