@@ -10,7 +10,7 @@ npm start (to start the api on local server)
 
 ### API Documentation
 
-API endpoints for the back end 
+API endpoints for cardDealer methods
 * Make Deck: GET to '/' 
 * Shuffle: GET to '/shuffle' 
 * Shuffle Remaining: GET to '/shuffle-remaining' 
@@ -23,7 +23,7 @@ API endpoints for the back end
 * Set wild card: PUT to '/set-wildcard/:card' 
 
 
-### cardDealer methods
+### cardDealer methods description
 
 * Make Deck: makes a deck in the default sort order [spades,hearts,clubs,diamonds] 2-A;
 * Shuffle : Randomize all the cards remaining in the deck and that are in the discard pile. If no deck is made , creates a deck, shuffles and does the former. Will remove wild cards and jokers.
