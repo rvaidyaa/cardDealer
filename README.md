@@ -28,6 +28,7 @@ API endpoints for the back end
 * Cut: POST to '/cut/:id' 
 * Order: GET to '/order' 
 * Add Jokers: POST to '/addJokers/:number' 
+* Set wild card: PUT to '/set-wildcard/:card' 
 
 
 ### Revelant Technologies

@@ -64,6 +64,14 @@ class Deck {
     this.discardPile = []; //fresh discard pile
     this.makeDeck();
   }
+  setWild(wild_card){
+    // loop through every card in deck if that card is = to wild_card change its value to "Wild Card"
+    for (let card in this.deck) {
+      if (this.deck[card] == wild_card) {
+        this.deck[card] = "Wild Card"
+      }
+    }
+  }
   shuffle() {
     const { deck } = this; //object destructuring
     let m = deck.length,
@@ -79,3 +87,4 @@ class Deck {
 }
 
 module.exports = Deck;
+

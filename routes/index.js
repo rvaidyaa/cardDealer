@@ -4,8 +4,8 @@ const Deck = require("../Deck");
 
 //brand new deck object
 let deck = new Deck();
-
-//creates the deck, returns it
+//***************************************************************
+//********************CREATES DECK THEN RETURNS IT***************
 router.get("/", (req, res) => {
   if (deck["deck"].length != 0) {
     return res.status(500).json({
@@ -16,7 +16,9 @@ router.get("/", (req, res) => {
   deck.makeDeck();
   res.status(200).json({ message: "Success! Creating deck", deck });
 });
-//shuffles cards
+
+//***************************************************************
+//********************SHUFFLES  CARDS****************************
 router.get("/shuffle", (req, res) => {
   deck.rebuildDeck();
   deck.shuffle();
@@ -25,16 +27,18 @@ router.get("/shuffle", (req, res) => {
       message: "Internal Server error"
     });
   }
-  res.status(200).json({message: "Success Deck shuffled", deck });
+  res.status(200).json({ message: "Success Deck shuffled", deck });
 });
-//shuffles only remaining cards in deck , returns deck
+//***************************************************************
+//********************SHUFFLES REMAINING CARDS*******************
 router.get("/shuffle-remaining", (req, res) => {
   if (deck["deck"].length == 0) {
     deck.makeDeck();
     deck.shuffle();
     return res.status(200).json({
       message:
-        "Creating a deck, no cards are in the discard pile so simply shuffling all cards", deck
+        "Creating a deck, no cards are in the discard pile so simply shuffling all cards",
+      deck
     });
   }
   if (deck["discardPile"].length == 0) {
@@ -45,9 +49,12 @@ router.get("/shuffle-remaining", (req, res) => {
     });
   }
   deck.shuffle();
-  res.status(200).json({message: "Shuffling all cards except discarded", deck });
+  res
+    .status(200)
+    .json({ message: "Shuffling all cards except discarded", deck });
 });
-//deals top card, returns deck
+//***************************************************************
+//************************DEALS TOP CARD*************************
 router.get("/deal", (req, res) => {
   if (deck["deck"].length == 0) {
     deck.makeDeck();
@@ -62,12 +69,13 @@ router.get("/deal", (req, res) => {
   deck.deal();
   res.status(200).json({ message: "Dealing one card", deck });
 });
-//discards specific card
+//***************************************************************
+//********************DISCARDS SPECIFIC CARD*********************
 router.delete("/discard/:card", (req, res) => {
   if (deck["deck"].length == 0) {
     deck.makeDeck();
     deck.discard(req.params.card);
-    return res.status(200).json({ 
+    return res.status(200).json({
       message: `No deck made, creating a deck and discarding ${
         req.params.card
       }`,
@@ -81,12 +89,14 @@ router.delete("/discard/:card", (req, res) => {
     deck
   });
 });
-//rebuild deck
+//***************************************************************
+//********************REBUILDS THE DECK**************************
 router.get("/rebuild", async (req, res) => {
   deck.rebuildDeck();
-  res.status(200).json({ message: "Rebuilding deck",deck });
+  res.status(200).json({ message: "Rebuilding deck", deck });
 });
-//cut the deck at specified point
+//***************************************************************
+//********************CUTS DECK AT SPECIFIC POINT****************
 router.post("/cut/:number", async (req, res) => {
   // if its not a number
 
@@ -146,24 +156,44 @@ router.post("/cut/:number", async (req, res) => {
     .status(200)
     .json({ message: `Cutting at card number: ${req.params.number}`, deck });
 });
-//reorders the deck to the default order without including the discarded cards
-router.get("/order", async (req, res) => {
+//*********************************************************************************************
+//********************REORDERS DECK INTO DEFUALT WITHOUT INCLUDING DISCARDED*******************
+router.get("/order", (req, res) => {
   deck.orderRemaining();
-  res.status(200).json({ message: "Putting all cards back into default order without including discarded cards",deck });
+  res.status(200).json({
+    message:
+      "Putting all cards back into default order without including discarded cards",
+    deck
+  });
 });
-router.post("/addJokers/:number", async (req, res) => {
+//*********************************************************************************************
+//********************ADDS SPECIFIED NUMBER OF JOKERS TO THE DECK******************************
+router.post("/addJokers/:number", (req, res) => {
   if (deck["deck"].length == 0) {
     deck.makeDeck();
     deck.shuffle();
     deck.addJokers(req.params.number);
     return res.status(200).json({
-      message:
-        `Creating a deck, shuffling and adding ${req.params.number} jokers to the deck`, deck
+      message: `Creating a deck, shuffling and adding ${
+        req.params.number
+      } jokers to the deck`,
+      deck
     });
   }
   console.log("inside get jokers");
   deck.addJokers(req.params.number);
-  res.status(200).json({message:
-    `Adding ${req.params.number} jokers to the deck`, deck });
+  res
+    .status(200)
+    .json({ message: `Adding ${req.params.number} jokers to the deck`, deck });
+});
+//*********************************************************************************************
+//********************TURNS SPECIFIED CARD INTO WILD CARD**************************************
+router.put("/set-wildcard/:card", (req, res) => {
+  deck.setWild(req.params.card);
+  res.status(200).json({
+    message:
+      `Setting ${req.params.card} to be "Wild card"`,
+    deck
+  });
 });
 module.exports = router;
