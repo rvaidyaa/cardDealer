@@ -3,6 +3,11 @@ class Deck {
     this.deck = [];
     this.discardPile = [];
   }
+  addJokers(number){
+    for (let i=0; i<number;i++){
+      this.deck.push('Joker')
+    }
+  }
   cut(cutIndex) {
     let firstCut = this.deck.splice(0, cutIndex);
     return (this.deck = [...this.deck, ...firstCut]);
@@ -11,15 +16,15 @@ class Deck {
     return this.deck.shift();
   }
   discard(discard_card) {
+    // loop through every card in deck if that card is = to discarded card splice it off, then push into discard pile
     for (let card in this.deck) {
-      console.log(this.deck[card]);
       if (this.deck[card] == discard_card) {
         let cardToDiscard = this.deck.splice(card, 1);
-        this.discardPile.push(cardToDiscard.toString());
+        this.discardPile.push(cardToDiscard.toString());//need to convert to a string
       }
     }
   }
-  makeDeck() {
+  makeDeck() { //easily change the default order of the cards by swapping values in each array
     const suites = ["Spades", "Hearts", "Clubs", "Diamonds"];
     const values = [
       "2",
@@ -51,7 +56,7 @@ class Deck {
     let difference = [...this.deck].filter(
       card => !this.discardPile.includes(card)
     );
-    console.log("Difference is: ", difference);
+    
     return (this.deck = difference);
   }
   rebuildDeck() {
