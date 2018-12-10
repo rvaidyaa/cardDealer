@@ -8,7 +8,7 @@ User Stories
 * Make Deck: makes a deck in the default sort order [spades,hearts,clubs,diamonds] 2-A;
 * Shuffle : Randomize all the cards remaining in the deck and that are in the discard pile. If no deck is made , creates a deck, shuffles and does the former.
 * Shuffle Remaining: Shuffles only cards that are remaining in the deck, if no cards are in the discard pile it works the same as shuffle. If no deck is made , creates a deck, shuffles and does the former.
-* Deal a Card : Deals one card off the top of the deck, if no deck is made, creates a fresh deck, shuffles and deals one card of the top. If no deck is made , creates a deck, shuffles and does the former.
+* Deal a Card : Deals one card off the top of the deck. If no deck is made , creates a deck, shuffles and does the former.
 * Discard : Specify a dealt card that is to be sent to the discard pile. If no deck is made , creates a deck and does the former. Does not shuffle.
 * Rebuild Deck: Puts the deck back into the default sort order with an empty discard pile
 * Cut: Specify a number of cards to cut; Example :4 Will take the top four cards and put it on the bottom. If no deck is made , creates a deck, shuffles and does the former. Needs atleast one card to cut. Numbers greater than the number of cards in the deck or numbers less than 0 will cut the deck randomly.
@@ -44,3 +44,5 @@ API endpoints for the back end
 
 ## To Do:
 * Use Joi to validate
+* Try to break it more, more error handling
+* Better tests
