@@ -45,9 +45,17 @@ API endpoints for cardDealer methods
 * Express.js
 * Nodemon
 * Express-generator
+* Mocha
+* Chai
 
 
-### Testing 
+### Integration Testing 
+
+```
+npm test
+```
+
+
 "https://mochajs.org/"  "http://chaijs.com/"
 
 
