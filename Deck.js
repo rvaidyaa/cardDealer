@@ -43,7 +43,7 @@ class Deck {
     ];
 
     for (let suit in suites) {
-      // loop through each suite
+      // loop through each suit
       for (let value in values) {
         //loop through each value pushing that value and suit into the deck
         this.deck.push(`${values[value]}-of-${suites[suit]}`);
