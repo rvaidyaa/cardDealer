@@ -11,7 +11,7 @@ User Stories
 * Deal a Card : Deals one card off the top of the deck. If no deck is made , creates a deck, shuffles and does the former.
 * Discard : Specify a dealt card that is to be sent to the discard pile. If no deck is made , creates a deck and does the former. Does not shuffle.
 * Rebuild Deck: Puts the deck back into the default sort order with an empty discard pile
-* Cut: Specify a number of cards to cut; Example :4 Will take the top four cards and put it on the bottom. If no deck is made , creates a deck, shuffles and does the former. Needs atleast one card to cut. Numbers greater than the number of cards in the deck or numbers less than 0 will cut the deck randomly.
+* Cut: Specify a number of cards to cut; Will take the top x number of cards and put it on the bottom. If no deck is made , creates a deck, shuffles and does the former. Needs at least one card to cut. Numbers greater than the number of cards in the deck or numbers less than 0 will cut the deck randomly.
 * Order: Order all the remaining cards back into default order without including discarded cards
 * Add Jokers: Adds x number of Jokers to the deck , if no Deck is made, makes a deck and adds jokers
 * Set wild card: Changes card into Joker (future date)
