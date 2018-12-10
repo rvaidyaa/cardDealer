@@ -13,16 +13,16 @@ npm start (starts the dev server on localhost:5000)
 ### API Documentation
 
 API endpoints for cardDealer methods
-* Make Deck: GET to '/' 
-* Shuffle: GET to '/shuffle' 
-* Shuffle Remaining: GET to '/shuffle-remaining' 
-* Deal a Card: GET to '/deal' 
-* Discard: DELETE to '/discard/:card'  
-* Rebuild Deck: GET to '/rebuild' 
-* Cut: POST to '/cut/:id' 
-* Order: GET to '/order' 
-* Add Jokers: POST to '/addJokers/:number' 
-* Set wild card: PUT to '/set-wildcard/:card' 
+* Make Deck:            GET to '/' 
+* Shuffle:              GET to '/shuffle' 
+* Shuffle Remaining:    GET to '/shuffle-remaining' 
+* Deal a Card:          GET to '/deal' 
+* Discard:              DELETE to '/discard/:card'  
+* Rebuild Deck:         GET to '/rebuild' 
+* Cut:                  POST to '/cut/:id' 
+* Order:                GET to '/order' 
+* Add Jokers:           POST to '/addJokers/:number' 
+* Set wild card:        PUT to '/set-wildcard/:card' 
 
 
 ### cardDealer methods description
