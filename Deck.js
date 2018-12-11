@@ -43,7 +43,6 @@ class Deck {
     ];
 
     for (let suit in suites) {
-      // loop through each suit
       for (let value in values) {
         //loop through each value pushing that value and suit into the deck
         this.deck.push(`${values[value]}-of-${suites[suit]}`);
@@ -52,7 +51,7 @@ class Deck {
   }
   orderRemaining() {
     this.deck = []; // fresh deck
-    this.makeDeck(); //create a fresh deck
+    this.makeDeck(); //create a fresh deck which has all the cards
     let difference = [...this.deck].filter(
       card => !this.discardPile.includes(card)
     );
@@ -79,7 +78,7 @@ class Deck {
 
     while (m) {
       //keeps going while m is
-      i = Math.floor(Math.random() * m--); //multiply by the length, then subtract one
+      i = Math.floor(Math.random() * m--); //multiply by the length (we dont want it to be more than the length), then subtract one
       [deck[m], deck[i]] = [deck[i], deck[m]]; // i is random gen value from 1 to length, then used to swap locations in array
     }
     return this;

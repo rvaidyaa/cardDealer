@@ -27,7 +27,7 @@ describe("cardDealer", function() {
         res.should.be.json;
         res.body.should.be.a("object");
         deck.should.have.length.of.at.least(52);
-
+          //if the first 5 cards are = to default order assume its not shuffled therefor it must be default order
         expect(deck[0]).to.equal("2-of-Spades");
         expect(deck[1]).to.equal("3-of-Spades");
         expect(deck[2]).to.equal("4-of-Spades");
