@@ -185,7 +185,6 @@ router.post("/addJokers/:number", (req, res) => {
       deck
     });
   }
-  console.log("inside get jokers");
   deck.addJokers(req.params.number);
   res
     .status(200)

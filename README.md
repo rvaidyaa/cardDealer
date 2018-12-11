@@ -23,8 +23,18 @@ API endpoints for cardDealer methods
 * Order:                GET to '/order' 
 * Add Jokers:           POST to '/addJokers/:number' 
 * Set wild card:        PUT to '/set-wildcard/:card' 
-
-
+| Type        | Route           | Method  |
+| ------------- |:-------------:| --------:|
+| GET      | `/` | Make Deck |
+| GET      | `/shuffle`      | Shuffle |
+| GET      | `/shuffle-remaining `| Shuffle Remaining |
+| GET      | `/deal`      | Deal a Card |
+| DELETE   | `/discard/:card`   | Discard |
+| GET      | `/rebuild`     | Rebuild Deck |
+| POST     | `/cut/:id `     | Cut |
+| GET      | `/order`      | Order: |
+| POST     | `/addJokers/:number`      | Add Jokers:|
+| PUT      | `/set-wildcard/:card`      | Set wild card: |
 ### cardDealer methods description
 
 * Make Deck: makes a deck in the default sort order [spades,hearts,clubs,diamonds] 2-A;
