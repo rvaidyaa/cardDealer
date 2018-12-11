@@ -12,17 +12,6 @@ npm start (starts the dev server on localhost:5000)
 
 ### API Documentation
 
-API endpoints for cardDealer methods
-* Make Deck:            GET to '/' 
-* Shuffle:              GET to '/shuffle' 
-* Shuffle Remaining:    GET to '/shuffle-remaining' 
-* Deal a Card:          GET to '/deal' 
-* Discard:              DELETE to '/discard/:card'  
-* Rebuild Deck:         GET to '/rebuild' 
-* Cut:                  POST to '/cut/:id' 
-* Order:                GET to '/order' 
-* Add Jokers:           POST to '/addJokers/:number' 
-* Set wild card:        PUT to '/set-wildcard/:card' 
 | Type        | Route           | Method  |
 | ------------- |:-------------:| --------:|
 | GET      | `/` | Make Deck |
@@ -35,7 +24,7 @@ API endpoints for cardDealer methods
 | GET      | `/order`      | Order: |
 | POST     | `/addJokers/:number`      | Add Jokers:|
 | PUT      | `/set-wildcard/:card`      | Set wild card: |
-### cardDealer methods description
+### cardDealer methods description:
 
 * Make Deck: makes a deck in the default sort order [spades,hearts,clubs,diamonds] 2-A;
 * Shuffle : Randomize all the cards remaining in the deck and that are in the discard pile. If no deck is made , creates a deck, shuffles and does the former. Will remove wild cards and jokers.
