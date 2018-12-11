@@ -18,12 +18,12 @@ npm start (starts the dev server on localhost:5000)
 | GET      | `/shuffle`      | Shuffle |
 | GET      | `/shuffle-remaining `| Shuffle Remaining |
 | GET      | `/deal`      | Deal a Card |
-| DELETE   | `/discard/:card`   | Discard |
 | GET      | `/rebuild`     | Rebuild Deck |
+| GET      | `/order`      | Order |
+| DELETE   | `/discard/:card`   | Discard |
 | POST     | `/cut/:id `     | Cut |
-| GET      | `/order`      | Order: |
-| POST     | `/addJokers/:number`      | Add Jokers:|
-| PUT      | `/set-wildcard/:card`      | Set wild card: |
+| POST     | `/addJokers/:number`      | Add Jokers|
+| PUT      | `/set-wildcard/:card`      | Set wild card |
 ### cardDealer methods description:
 
 * Make Deck: makes a deck in the default sort order [spades,hearts,clubs,diamonds] 2-A;
